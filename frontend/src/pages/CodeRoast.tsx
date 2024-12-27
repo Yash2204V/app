@@ -1,14 +1,5 @@
-import {
-    Menubar,
-    MenubarContent,
-    MenubarItem,
-    MenubarMenu,
-    MenubarSeparator,
-    MenubarTrigger,
-} from "@/components/ui/menubar";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { Button } from "./ui/button";
 import axios from "axios";
 import {
     FaMoon,
@@ -21,8 +12,12 @@ import {
     FaFile,
     FaReact,
 } from "react-icons/fa";
+
+
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { UserButton } from "@clerk/clerk-react";
+import { Button } from "@/components/ui/button";
 
 
 export default function CodeRoast() {
@@ -133,22 +128,8 @@ export default function CodeRoast() {
                         >
                             {mode === "dark" ? <FaSun /> : <FaMoon />}
                         </Button>
-                        <Menubar className="rounded-lg">
-                            <MenubarMenu>
-                                <MenubarTrigger>Dashboard</MenubarTrigger>
-                                <MenubarContent
-                                    className={`${mode} text-black dark:text-white bg-white dark:bg-slate-800`}
-                                >
-                                    <MenubarItem>Visit</MenubarItem>
-                                    <MenubarSeparator />
-                                    <MenubarItem>Flame Mode</MenubarItem>
-                                    <MenubarSeparator />
-                                    <MenubarItem>CodeRoast</MenubarItem>
-                                    <MenubarSeparator />
-                                    <MenubarItem>Logout</MenubarItem>
-                                </MenubarContent>
-                            </MenubarMenu>
-                        </Menubar>
+                        <UserButton />
+
                     </div>
                 </nav>
             </header>
