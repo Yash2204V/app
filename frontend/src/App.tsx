@@ -5,19 +5,22 @@ import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 import { useAuth } from '@clerk/clerk-react'
 import CodeRoast from './pages/CodeRoast'
+import { RecoilRoot } from 'recoil'
 
 
 function App() {
   const { isSignedIn } = useAuth();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/coderoast" element={isSignedIn ? <CodeRoast /> : <SignIn />} />
-        <Route path="/signup" element={isSignedIn ? <CodeRoast /> : <SignUp />} />
-        <Route path="/signin" element={isSignedIn ? <CodeRoast /> : <SignIn/>} />
-      </Routes>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/coderoast" element={isSignedIn ? <CodeRoast /> : <SignIn />} />
+          <Route path="/signup" element={isSignedIn ? <CodeRoast /> : <SignUp />} />
+          <Route path="/signin" element={isSignedIn ? <CodeRoast /> : <SignIn />} />
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   )
 }
 

@@ -18,10 +18,12 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { UserButton } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
+import { useRecoilState } from "recoil";
+import { mode } from "@/store/atom";
 
 
 export default function CodeRoast() {
-    const [mode, setMode] = useState("dark");
+    const [nightMode, setNightMode] = useRecoilState(mode);
     const [repoUrl, setRepoUrl] = useState("");
     const [repoPath, setRepoPath] = useState("");
     const [pathHistory, setPathHistory] = useState([]);
@@ -110,7 +112,7 @@ export default function CodeRoast() {
 
     return (
         <div
-            className={`${mode}  text-black dark:text-white bg-white dark:bg-slate-800 max-h-screen h-[1000px] overflow-auto`}
+            className={`${nightMode} bg-white text-[#bd0400] dark:text-white dark:bg-gradient-to-r dark:from-[#690000] dark:to-[#bd0400] max-h-screen h-[1000px] overflow-auto`}
         >
             <header>
                 <nav className="flex h-20 justify-between px-8 items-center lg:mx-44">
@@ -123,13 +125,12 @@ export default function CodeRoast() {
                         <Button
                             variant="ghost"
                             onClick={() => {
-                                setMode(mode === "dark" ? "light" : "dark");
+                                setNightMode(nightMode === "dark" ? "light" : "dark");
                             }}
                         >
-                            {mode === "dark" ? <FaSun /> : <FaMoon />}
+                            {nightMode === "dark" ? <FaSun /> : <FaMoon />}
                         </Button>
                         <UserButton />
-
                     </div>
                 </nav>
             </header>
@@ -199,11 +200,11 @@ export default function CodeRoast() {
                             </div>
                         )}{" "}
                     </div>
-                    <div className="lg:w-[60%] overflow-auto max-h-[600px] h-full bg-[#34495e] p-3 text-[12px] lg:text-md rounded-xl text-[#ecf0f1] shadow-lg">
+                    <div className="lg:w-[60%] overflow-auto max-h-[600px] h-full bg-[#690000] p-3 text-[12px] lg:text-md rounded-xl text-[#ecf0f1] shadow-lg">
                         {/* Display file content with syntax highlighting */}
                         {fileContent && (
                             <div className="">
-                                <h2 className="">File Content:</h2>
+                                <h2 className="font-semibold text-lg">File Content:</h2>
                                 <SyntaxHighlighter
                                     language={fileType}
                                     style={dracula}
